@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+
+.flex-container{
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-container{
+  width: 120vh;
+  height: 70vh;
+  box-shadow: 20px 17px 14px 0px #cccccc;
+  border-radius: 50px;
+}
+.top-container{
+  text-align: center;
+  height: 30%;
+  line-height: 30%;
+  overflow: hidden;
+}
+.middle-container{
+  text-align: center;
+  height: 30%;
+}
+
+.bottom-container{
+  text-align: center;
+  height: 40%;
+}
+
+.stat-row{
+  overflow: scroll;
+  flex-wrap: nowrap;
+}
