@@ -8,45 +8,11 @@ import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import GridComponent from "./components/GridComponents";
 
-import Box from "@mui/material/Box";
-import data, { updatePlayerId, updateSeasonId } from "./features/data";
+import { updatePlayerId} from "./features/data";
 
 import { useSelector, useDispatch } from "react-redux";
-import { IonCard, IonCardHeader, IonCardContent } from "@ionic/react";
 import Select from "react-select";
 
-const ButtonsList = () => {
-  const data = useSelector((state) => state.keys.value);
-  return (
-    <div>
-      {data.seasonId}
-      {data.playerId}
-    </div>
-  );
-};
-const SeasonTabs = () => {
-  const data = useSelector((state) => state.keys.value);
-  const dispatch = useDispatch();
-  return data.playerId !== null ? (
-    <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-      <Tabs
-        aria-label="scrollable auto tabs example"
-        value={data.seasonId}
-        variant="scrollable"
-        scrollButtons={false}
-        onChange={(event, newValue) => {
-          dispatch(updateSeasonId({ seasonId: newValue }));
-        }}
-      >
-        {Array.from(data.playerMap.get(data.playerId)["seasons"].keys()).map(
-          (season) => {
-            return <Tab key={season} label={season} value={season} />;
-          }
-        )}
-      </Tabs>
-    </Box>
-  ) : null;
-};
 const PlayerSelect = () => {
   const data = useSelector((state) => state.keys.value);
   const dispatch = useDispatch();

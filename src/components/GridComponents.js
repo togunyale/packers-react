@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import data, { updatePlayerId, updateSeasonId } from "../features/data";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -30,7 +29,7 @@ const GridComponent = () => {
   const defaultColDef = useMemo(() => {
     return {
       flex: 1,
-      minWidth: 150,
+      minWidth: 250,
       sortable: true,
       resizable: true,
     };
