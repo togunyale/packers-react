@@ -23,11 +23,17 @@ const populateMap = () => {
         (player) => player.PlayerId === record.PlayerId
       );
       playerSeasonMap.set(record.PlayerId, {
-        seasons: [record],
+        seasons: {
+          Reg: record["SeasonType"] === "Reg" ? [record] : [],
+          Post: record["SeasonType"] === "Post" ? [record] : [],
+          Pre: record["SeasonType"] === "Pre" ? [record] : [],
+        },
         playerInfo: currentPlayerData,
       });
     } else {
-      playerSeasonMap.get(record.PlayerId)["seasons"].push(record);
+      playerSeasonMap
+        .get(record.PlayerId)
+        ["seasons"][record["SeasonType"]].push(record);
     }
   });
 

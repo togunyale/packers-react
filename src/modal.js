@@ -5,12 +5,6 @@ export const qbStatCol_GameByGame = [
     rowGroup: true,
     hide: true,
   },
-  {
-    field: "SeasonType",
-    headerName: "Season Type",
-    rowGroup: true,
-    hide: true,
-  },
   { field: "Opp", headerName: "Opponent" },
   { field: "GameDate", headerName: "Game Date" },
   {
@@ -80,12 +74,6 @@ export const wrStatCol_GameByGame = [
     rowGroup: true,
     hide: true,
   },
-  {
-    field: "SeasonType",
-    headerName: "Season Type",
-    rowGroup: true,
-    hide: true,
-  },
   { field: "Opp", headerName: "Opponent" },
   { field: "GameDate", headerName: "Game Date" },
   { field: "RecReceptions", headerName: "Receptions", aggFunc: "sum" },
@@ -114,12 +102,6 @@ export const rbStatCol_GameByGame = [
   {
     field: "Season",
     headerName: "Season",
-    rowGroup: true,
-    hide: true,
-  },
-  {
-    field: "SeasonType",
-    headerName: "Season Type",
     rowGroup: true,
     hide: true,
   },
@@ -155,12 +137,4 @@ export const PositionTypes = {
   QB: qbStatCol_GameByGame,
   WR: wrStatCol_GameByGame,
   RB: rbStatCol_GameByGame,
-};
-
-const sumFunction = (values) => {
-  var sum = 0;
-  values.forEach(function (value) {
-    sum += Number(value);
-  });
-  return sum;
 };

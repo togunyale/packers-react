@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Divider from "@mui/material/Divider";
 import GridComponent from "./components/GridComponents";
 
-import { updatePlayerId} from "./features/data";
+import { updatePlayerId } from "./features/data";
 
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
@@ -23,8 +21,18 @@ const PlayerSelect = () => {
     },
     label: `${player.playerInfo["FirstName"]} ${player.playerInfo["LastName"]}(${player.playerInfo["PositionId"]})`,
   }));
+
+  players.unshift({
+    value: {
+      id: null,
+      pos: null,
+    },
+    label: `Select ...`,
+  })
+
   return (
     <Select
+    value={data.playerIdP}
       options={players}
       onChange={(event) => {
         dispatch(
@@ -45,7 +53,7 @@ const PlayerInfo = () => {
     : null;
   const heightFormat = (height) => {
     let heightToString = height.toString().slice(0, -1);
-    if (heightToString.charAt(1) == "0") {
+    if (heightToString.charAt(1) === "0") {
       return heightToString.replaceAt(1, `'`);
     } else {
       return heightToString.slice(0, 1) + `'` + heightToString.slice(1);
@@ -125,10 +133,6 @@ String.prototype.replaceAt = function (index, replacement) {
 };
 
 class App extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div className="App">

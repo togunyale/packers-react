@@ -98,3 +98,25 @@ ion-button {
   box-shadow: 10px 5px 5px #cccccc;
   margin-top: 12px;
 }
+
+.clearButton {
+  margin-top: 25px;
+  border-radius: 30px;
+  border-width: 0px;
+  box-shadow: 10px 5px 5px #cccccc;
+  height: 30px;
+}
+.clearButton:active,
+.clearButton:hover {
+  background-color: #2684ff;
+  color: white;
+}
+
+.css-1gjgmky-MuiToggleButtonGroup-root {
+  margin-top: 25px;
+}
+
+.MuiButtonBase-root,
+.MuiToggleButton-root {
+  width: 100%;
+}

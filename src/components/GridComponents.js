@@ -1,15 +1,21 @@
-import React, { useMemo } from "react";
+import React, {useMemo, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import "ag-grid-enterprise";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import { PositionTypes } from "../modal";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 const GridComponent = () => {
   const data = useSelector((state) => state.keys.value);
-
   const column = PositionTypes[data.playerPos];
+  const [gameType, setGameType] = useState("Reg");
+
+  const GameTypeChange = (event, newGameType) => {
+    setGameType(newGameType);
+  };
 
   const autoGroupColumnDef = useMemo(() => {
     return {
@@ -18,7 +24,7 @@ const GridComponent = () => {
         footerValueGetter: (params) => {
           const isRootLevel = params.node.level === -1;
           if (isRootLevel) {
-            return "Career Totals";
+            return `Career Totals`;
           }
           return `Season(${params.value}) Totals`;
         },
@@ -36,17 +42,30 @@ const GridComponent = () => {
   }, []);
 
   return data.playerId && column ? (
-    <div className="ag-theme-alpine" style={{ height: 300 }}>
-      <AgGridReact
-        rowData={data.playerMap.get(data.playerId)["seasons"]}
-        columnDefs={column}
-        defaultColDef={defaultColDef}
-        autoGroupColumnDef={autoGroupColumnDef}
-        groupIncludeFooter={true}
-        groupIncludeTotalFooter={true}
-        animateRows={true}
-      ></AgGridReact>
-    </div>
+    <>
+      <ToggleButtonGroup
+        color="primary"
+        value={gameType}
+        exclusive
+        aria-label="Seaon Type"
+        onChange={GameTypeChange}
+      >
+        <ToggleButton value={"Reg"}>{"Regular Season"}</ToggleButton>
+        <ToggleButton value={"Post"}>{"Post Season"}</ToggleButton>
+        <ToggleButton value={"Pre"}>{"Pre Season"}</ToggleButton>
+      </ToggleButtonGroup>
+      <div className="ag-theme-alpine" style={{ height: 300 }}>
+        <AgGridReact
+          rowData={data.playerMap.get(data.playerId)["seasons"][gameType]}
+          columnDefs={column}
+          defaultColDef={defaultColDef}
+          autoGroupColumnDef={autoGroupColumnDef}
+          groupIncludeFooter={true}
+          groupIncludeTotalFooter={true}
+          animateRows={true}
+        ></AgGridReact>
+      </div>
+    </>
   ) : null;
 };
 
